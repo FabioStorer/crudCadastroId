@@ -20,7 +20,7 @@ const verificarEmail = email => {
 
 let updateId = 1;
 
-const modelo = () => {
+const modelo = (id) => {
 
     let usuario = {
         nome: '',
@@ -53,20 +53,20 @@ const modelo = () => {
 
     while (true) {
 
-        usuario.telefone.push(prompt('Insira seu telefone: '));
-
-        if (verificarNumero(usuario.telefone)) {
+        const telefone = prompt('Insira seu telefone: ')
+        if (verificarNumero(telefone)) {
             console.log('Insira um telefone válido.');
         } else {
+            usuario.telefone.push(telefone);
             let resposta = prompt('Deseja adicionar outro número? (s/n) ');
 
             if (verificarNome(resposta)) {
                 console.log('Insira uma opção válida.');
             } else {
                 if (resposta == 's') {
-                    usuario.telefone.push(prompt('Insira um novo telefone: '));
+                    continue
                 } else {
-                    break;
+                   break;
                 }
             }
         }
@@ -104,7 +104,7 @@ const atualizarCadastro = () => {
 
     while (true) {
 
-        let id = prompt('Escolha pelo ID qual cadastro deseja atualizar: ');
+        const id = prompt('Escolha pelo ID qual cadastro deseja atualizar: ');
 
         if (verificarNumero(id)) {
             console.log('Insira um ID válido.');
