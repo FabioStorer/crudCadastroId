@@ -109,10 +109,12 @@ const atualizarCadastro = () => {
         if (verificarNumero(id)) {
             console.log('Insira um ID válido.');
         } else {
-            const usuario = modelo(id);
-            usuarios[id] = usuario;
-            console.log('Cadastro atualizado com sucesso.');
-            break;
+            if (id == usuario.id) {
+                const novo = modelo(id);
+                usuarios[id] = novo;
+                console.log('Cadastro atualizado com sucesso.');
+                break;
+            }
         }
     }
 };
@@ -128,7 +130,14 @@ const removerCadastro = () => {
         if (verificarNumero(opcao)) {
             console.log('Insira um ID válido.');
         } else {
-
+            usuarios.forEach((usuario, index) => {
+                if (opcao == usuario.id) {
+                    const confirma = prompt('Deseja realmente remover? s/n ');
+                    if (confirma == 's') {
+                        usuarios.splice(opcao, 1);
+                    }
+                }
+            });
         }
     }
 };
